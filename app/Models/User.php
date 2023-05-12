@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\DataUser;
 use App\Models\PullRiph;
 use App\Models\Post;
+use App\Models\MasterKelompok;
 
 class User extends Authenticatable
 {
@@ -112,6 +113,16 @@ class User extends Authenticatable
         return $this->hasOne(DataUser::class);
     }
 
+    public function masterkelompok()
+    {
+        return $this->hasMany(MasterKelompok::class);
+    }
+
+
+    public function commitmentbackdate()
+    {
+        return $this->hasMany(CommitmentBackdate::class);
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
