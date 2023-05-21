@@ -381,55 +381,51 @@
 						</ul>
 					</li>
 				@endcan
-				{{-- permohonan --}}
-				@can('permohonan_access')
-					<li class="{{ request()->is('admin/task/pengajuan*') 
-						|| request()->is('admin/task/skl*') ? 'active open' : '' }} ">
-						<a href="#" title="Verifikasi & SKL"
-							data-filter-tags="daftar pengajuan permohonan verifikasi skl">
-							<i class="fa-fw fal fa-ballot"></i>
-							<span class="nav-link-text">{{ trans('cruds.verifikasi.title_lang') }}</span>
-						</a>
-						<ul>
-							@can('pengajuan_access')
-								<li class="c-sidebar-nav-item {{ request()->is('admin/task/pengajuan') 
-									|| request()->is('admin/task/submission*') ? 'active' : '' }}">
-									@if (Auth::user()->roles[0]->title == 'user_v2')
-										<a href="{{ route('admin.task.submission') }}"
-											data-filter-tags="daftar pengajuan verifikasi data online onfarm">
-											<i class="fa-fw fal fa-ballot c-sidebar-nav-icon"></i>
-											Pengajuan Verifikasi
-										</a>
-									@else
-										<a href="{{ route('admin.task.pengajuan.index') }}" title="Pengajuan"
-											data-filter-tags="daftar pengajuan verifikasi data online onfarm">
-											<i class="fa-fw fal fa-file c-sidebar-nav-icon"></i>
-											<span class="nav-link-text">
-												{{ trans('cruds.pengajuan.title_lang') }}
-											</span>
-										</a>
-									@endif
-								</li>
-							@endcan
-							@can('skl_access')  
-								<li class="c-sidebar-nav-item {{ request()->is('admin/task/skl')
-									|| request()->is('admin/task/sklv2*')
-									|| request()->is('admin/task/skl/*') ? 'active' : '' }}">
-									@if (Auth::user()->roles[0]->title == 'user_v2')
-										<a href="{{ route('admin.task.sklv2.list') }}" title="Daftar SKL Terbit"
-											data-filter-tags="daftar skl terbit">
-											<i class="fa-fw fal fa-award c-sidebar-nav-icon"></i>
-											<span class="nav-link-text">{{ trans('cruds.skl.title_lang') }}</span>
-										</a>
-									@else
-										<a href="{{ route('admin.task.skl.index') }}" title="Skl"
-											data-filter-tags="daftar pengajuan skl">
-											<i class="fa-fw fal fa-file c-sidebar-nav-icon"></i>
-											<span class="nav-link-text">{{ trans('cruds.skl.title_lang') }}</span>
-										</a>
-									@endif
-								</li>
-							@endcan
+				
+			@endcan
+
+			{{-- permohonan --}}
+			@can('permohonan_access')
+				<li class="{{ request()->is('admin/task/pengajuan*') || request()->is('admin/task/skl*') ? 'active open' : '' }} ">
+					<a href="#" title="Verifikasi & SKL"
+						data-filter-tags="{{ strtolower(trans('cruds.verifikasi.title_lang')) }}">
+						<i class="fa-fw fal fa-ballot"></i>
+						<span class="nav-link-text"
+							data-i18n="nav.administation_sub1">{{ trans('cruds.verifikasi.title_lang') }}</span>
+					</a>
+					<ul>
+						@can('pengajuan_access')
+							<li
+								class="c-sidebar-nav-item {{ request()->is('admin/task/pengajuan') || request()->is('admin/task/pengajuan/*') ? 'active' : '' }}">
+								@if (Auth::user()->roles[0]->title == 'user_v2')
+									<a href="{{ route('admin.task.pengajuan.index') }}"
+										data-filter-tags="{{ strtolower(trans('cruds.commitment.title_lang')) }}">
+										<i class="fa-fw fal fa-ballot c-sidebar-nav-icon"></i>
+										{{ trans('cruds.commitment.title_lang') }}
+									</a>
+								@else
+									<a href="{{ route('admin.task.pengajuan.index') }}" title="Pengajuan"
+										data-filter-tags="{{ strtolower(trans('cruds.pengajuan.title_lang')) }}">
+										<i class="fa-fw fal fa-file c-sidebar-nav-icon"></i>
+										<span class="nav-link-text"
+											data-i18n="nav.administation_sub1_menu1">
+											{{ trans('cruds.pengajuan.title_lang') }}
+										</span>
+									</a>
+								@endif
+							</li>
+						@endcan
+						@can('skl_access')  
+							<li
+								class="c-sidebar-nav-item {{ request()->is('admin/task/skl') || request()->is('admin/task/skl/*') ? 'active' : '' }}">
+								<a href="{{ route('admin.task.skl.index') }}" title="Skl"
+									data-filter-tags="{{ strtolower(trans('cruds.skl.title_lang')) }}">
+									<i class="fa-fw fal fa-file c-sidebar-nav-icon"></i>
+									<span class="nav-link-text"
+										data-i18n="nav.administation_sub1_menu2">{{ trans('cruds.skl.title_lang') }}</span>
+								</a>
+							</li>
+						@endcan
 
 						</ul>
 					</li>

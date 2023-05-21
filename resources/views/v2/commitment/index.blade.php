@@ -10,7 +10,7 @@
 		<div class="panel" id="panel-1">
 			<div class="panel-hdr">
 				<h2>
-					Daftar Komitment (RIPH Bawang Putih Konsumsi)
+					RIPH Bawang Putih Konsumsi
 				</h2>
 				<div class="panel-toolbar">
 					@include('partials.globaltoolbar')
@@ -147,15 +147,18 @@
 @section('scripts')
 @parent
 <script>
-	$(document).ready(function() {
-		var table = $('#datatable').DataTable({
-			responsive: true,
-			lengthChange: false,
-			dom:
-			"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'<'select'>>>" + // Move the select element to the left of the datatable buttons
-				"<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-				"<'row'<'col-sm-12'tr>>" +
-				"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+	$(document).ready(function()
+	{
+
+		// initialize datatable
+		$('#datatable').dataTable(
+		{
+				responsive: true,
+				lengthChange: false,
+				dom:
+					"<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+					"<'row'<'col-sm-12'tr>>" +
+					"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 				buttons: [
 					/*{
 						extend:    'colvis',
@@ -194,34 +197,17 @@
 						className: 'btn-outline-primary btn-sm btn-icon mr-1'
 					},
 					{
-						text: '<i class="fa fa-plus mr-1"></i>Komitmen Baru',
-						titleAttr: 'Data Komitmen baru',
-						className: 'btn btn-info btn-xs ml-2',
+						text: '<i class="fa fa-plus"></i>',
+						titleAttr: 'Add new Commitment',
+						className: 'btn btn-info btn-sm btn-icon ml-2',
 						action: function(e, dt, node, config) {
 							window.location.href = '{{ route('admin.task.commitments.create') }}';
 						}
-					}]
-				});
-	
-				// Get the unique values of the "Year" column
-				var years = table.column(1).data().unique().sort();
-	
-				// Create the select element and add the options
-				var select = $('<select>')
-					.addClass('custom-select custom-select-sm col-3 mr-2')
-					.on('change', function() {
-						var year = $.fn.dataTable.util.escapeRegex($(this).val());
-						table.column(1).search(year ? '^' + year + '$' : '', true, false).draw();
-					});
-				
-				$('<option>').val('').text('Semua Tahun').appendTo(select);
-				$.each(years, function(i, year) {
-					$('<option>').val(year).text(year).appendTo(select);
-				});
-	
-				// Add the select element before the first datatable button
-			$('.dt-buttons').before(select);
+					}
+				]
 		});
-	</script>
+
+	});
+</script>
 
 @endsection

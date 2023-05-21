@@ -33,7 +33,7 @@ class CommitmentBackdateController extends Controller
 	public function index(Request $request)
 	{
 		//
-		$module_name = 'Komitmen';
+		$module_name = 'Proses RIPH';
 		$page_title = 'Daftar Komitmen';
 		$page_heading = 'Daftar Komitmen';
 		$heading_class = 'fa fa-file-invoice';
