@@ -14,4 +14,6 @@
 4. php artisan migrate:fresh --seed
 5. npm install
 6. npm run dev
-7. php artisan serve 
+7. php artisan schedule:test, then select 0 (only if needed)
+8. php artisan storage:link
+9. php artisan serve
