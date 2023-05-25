@@ -48,6 +48,10 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'jabatan',
+        'nip',
+        'ttd',
+        'digisign',
         'username',
         'email',
         'email_verified_at',
